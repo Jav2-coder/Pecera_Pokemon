@@ -28,9 +28,9 @@ public class App extends GraphicsProgram {
 	 */
 	public void init() {
 
-		setSize(PEIXERA_AMP, PEIXERA_ALT);
 		GImage fons = new GImage("fondo.png");
 		add(fons);
+		setSize((int) fons.getWidth(), (int) fons.getHeight());
 
 	}
 
@@ -90,11 +90,11 @@ public class App extends GraphicsProgram {
 
 		if (sexe.equals("mascle")) {
 			img = new GImage("Sharpedo.png");
-			img.scale(0.1);
+			img.scale(0.2);
 			add(img);
 		} else {
 			img = new GImage("");
-			img.scale(0.1);
+			img.scale(0.2);
 			add(img);
 		}
 
@@ -124,11 +124,11 @@ public class App extends GraphicsProgram {
 
 		if (sexe.equals("mascle")) {
 			img = new GImage("Magikarp.png");
-			img.scale(0.1);
+			img.scale(0.2);
 			add(img);
 		} else {
 			img = new GImage("");
-			img.scale(0.1);
+			img.scale(0.2);
 			add(img);
 		}
 
@@ -150,15 +150,36 @@ public class App extends GraphicsProgram {
 
 		if (sexe.equals("mascle")) {
 			img = new GImage("Lanturn.png");
-			img.scale(0.1);
+			img.scale(0.2);
 			add(img);
 		} else {
 			img = new GImage("");
-			img.scale(0.1);
+			img.scale(0.2);
 			add(img);
 		}
 
-		Peix P = new Peix(img, sexe, movX, movY);
+		Dofi D = new Dofi(img, sexe, movX, movY);
+
+		return D;
+	}
+	
+	public Animal crearPop() {
+
+		
+		int movX = DIRECCIO[rnd.nextInt(3)];
+		int movY = 0;
+
+		if (movX == 0) {
+			movY = DIRECCIO[rnd.nextInt(2) + 1];
+		}
+
+		GImage img;
+
+		img = new GImage("Octillery.png");
+		img.scale(0.2);
+		add(img);
+		
+		Pop P = new Pop(img, "mascle", movX, movY);
 
 		return P;
 	}
