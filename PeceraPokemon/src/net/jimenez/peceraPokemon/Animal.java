@@ -163,10 +163,7 @@ public abstract class Animal {
 	/**
 	 * Metode que canvia la direcció de moviment dels objectes Peix.
 	 */
-	public void canviDireccio() {
-		movX = movX * -1;
-		movY = movY * -1;
-	}
+	public abstract void canviDireccio();
 
 	/**
 	 * Metode que posiciona el GImage dins del canvas.
@@ -195,5 +192,6 @@ public abstract class Animal {
             }
         }
         imatge.setImage(new GImage(array).getImage());
+        imatge.scale(0.1);
     }	
 }

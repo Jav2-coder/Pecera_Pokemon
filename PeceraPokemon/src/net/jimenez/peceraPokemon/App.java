@@ -29,7 +29,7 @@ public class App extends GraphicsProgram {
 	public void init() {
 
 		setSize(PEIXERA_AMP, PEIXERA_ALT);
-		GImage fons = new GImage("Pacman-fond.png");
+		GImage fons = new GImage("fondo.png");
 		add(fons);
 
 	}
@@ -90,9 +90,11 @@ public class App extends GraphicsProgram {
 
 		if (sexe.equals("mascle")) {
 			img = new GImage("Sharpedo.png");
+			img.scale(0.1);
 			add(img);
 		} else {
-			img = new GImage("ms pacman.png");
+			img = new GImage("shiny_sharpedo_global_link_art_by_trainerparshen-d6u3iij.png");
+			img.scale(0.1);
 			add(img);
 		}
 
@@ -125,10 +127,12 @@ public class App extends GraphicsProgram {
 		GImage img;
 
 		if (sexe.equals("mascle")) {
-			img = new GImage("inky.png");
+			img = new GImage("Magikarp.png");
+			img.scale(0.1);
 			add(img);
 		} else {
-			img = new GImage("pinky.png");
+			img = new GImage("6TJSm.png");
+			img.scale(0.1);
 			add(img);
 		}
 

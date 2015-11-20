@@ -33,4 +33,10 @@ public class Tauro extends Animal {
 		}
 		return false;
 	}
+
+	@Override
+	public void canviDireccio() {
+		movX = movX * -1;
+		movY = movY * -1;	
+	}
 }
