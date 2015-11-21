@@ -11,8 +11,8 @@ import acm.graphics.GRectangle;
 public abstract class Animal {
 
 	String sexe;
-	int movX;
-	int movY;
+	int mov = 1;
+	int ang;
 	GImage imatge;
 	boolean vida = true;
 	boolean reproduccio = true;
@@ -21,21 +21,20 @@ public abstract class Animal {
 	 * Constructor de l'objecte Peix
 	 * 
 	 * @param img parametre que dona el valor GImage de "imatge" a l'objecte
-	 * Peix
-	 * @param sex parametre que dona el valor String de "sexe" a l'objecte Peix
-	 * @param x parametre que dona el valor Integer de "movX" a l'objecte Peix
-	 * @param y parametre que dona el valor Integer de "movY" a l'objecte Peix
+	 * Animal
+	 * @param sex parametre que dona el valor String de "sexe" a l'objecte Animal
+	 * @param m parametre que dona el valor Integer de "mov" a l'objecte Animal
+	 * @param a parametre que dona el valor Integer de "ang" a l'objecte Animal
 	 */
-	public Animal(GImage img, String sex, int x, int y) {
+	public Animal(GImage img, String sex, int a) {
 
 		imatge = img;
 		sexe = sex;
-		movX = x;
-		movY = y;
+		ang = a;
 	}
 
 	/**
-	 * Metode que retorna un boolean que comprova si l'objecte Peix pot
+	 * Metode que retorna un boolean que comprova si l'objecte Animal pot
 	 * reproduirse o no.
 	 * 
 	 * @return
@@ -43,7 +42,7 @@ public abstract class Animal {
 	public boolean getRepro() {
 		return reproduccio;
 	}
-
+	
 	/**
 	 * Metode que permet modificar el boolean que comprova si l'objecte Peix pot
 	 * reproduirse o no.
@@ -157,13 +156,14 @@ public abstract class Animal {
 	 * Metode que mou el GImage del objecte Peix en el canvas.
 	 */
 	public void movimentAnimal() {
-		imatge.move(movX, movY);
+		imatge.movePolar(mov, ang);
 	}
 
 	/**
 	 * Metode que canvia la direcció de moviment dels objectes Peix.
+	 * @param peixera 
 	 */
-	public abstract void canviDireccio();
+	public abstract void canviDireccio(GRectangle peixera);
 
 	/**
 	 * Metode que posiciona el GImage dins del canvas.
@@ -192,6 +192,5 @@ public abstract class Animal {
             }
         }
         imatge.setImage(new GImage(array).getImage());
-        imatge.scale(0.1);
     }	
 }

@@ -15,11 +15,12 @@ import acm.program.GraphicsProgram;
 public class App extends GraphicsProgram {
 
 	private static final long serialVersionUID = 4266158358432665610L;
-	private static final int TOTAL_PEIXOS = 54;
-	private static final int TOTAL_TAURONS = 6;
+	private static final int TOTAL_PEIXOS = 34;
+	private static final int TOTAL_TORTUGUES = 6;
+	private static final int TOTAL_TAURONS = 4;
 	private static final int PEIXERA_AMP = 1435;
 	private static final int PEIXERA_ALT = 800;
-	private static final int[] DIRECCIO = { 0, 1, -1 };
+	private static final int[] DIRECCIO = { 0, 90, 180, 270 };
 	List<Animal> Animals = new ArrayList<Animal>();
 	Random rnd = new Random();
 
@@ -38,7 +39,11 @@ public class App extends GraphicsProgram {
 	 * Metode principal del programa, on creem tots els objectes.
 	 */
 	public void run() {
-		for (int i = 0; i < TOTAL_PEIXOS; i++) {
+		for (int i = 0; i < 2; i++){
+			Animals.add(crearPop());
+		}
+		
+		/*for (int i = 0; i < TOTAL_PEIXOS; i++) {
 
 			if (i < (TOTAL_PEIXOS / 2)) {
 				Animals.add(crearPeix("mascle"));
@@ -56,8 +61,17 @@ public class App extends GraphicsProgram {
 			} else {
 				Animals.add(crearTauro("femella"));
 			}
-
 		}
+		
+		for (int i = 0; i < TOTAL_TORTUGUES; i++) {
+
+			if (i < (TOTAL_TORTUGUES / 2)) {
+				Animals.add(crearTortuga("mascle"));
+
+			} else {
+				Animals.add(crearTortuga("femella"));
+			}
+		}*/
 
 		Peixera peixera = new Peixera(Animals, this);
 		boolean noAnimals = peixera.inici();
@@ -79,28 +93,22 @@ public class App extends GraphicsProgram {
 	 */
 	public Animal crearTauro(String sexe) {
 
-		int movX = DIRECCIO[rnd.nextInt(3)];
-		int movY = 0;
-
-		if (movX == 0) {
-			movY = DIRECCIO[rnd.nextInt(2) + 1];
-		}
-
+		int pos = rnd.nextInt(4);
+		int angle = DIRECCIO[pos];
+		
 		GImage img;
 
 		if (sexe.equals("mascle")) {
 			img = new GImage("Sharpedo.png");
-			img.scale(0.1);
 			add(img);
 		} else {
-			img = new GImage("shiny_sharpedo_global_link_art_by_trainerparshen-d6u3iij.png");
-			img.scale(0.1);
+			img = new GImage("S_Sharpedo.png");
 			add(img);
 		}
 
-		Tauro T = new Tauro(img, sexe, movX, movY);
+		Tauro T = new Tauro(img, sexe, angle);
 
-		if (movX < 0) {
+		if(pos > 1){
 			T.flipHorizontal();
 		}
 		
@@ -117,31 +125,84 @@ public class App extends GraphicsProgram {
 	 */
 	public Peix crearPeix(String sexe) {
 
-		int movX = DIRECCIO[rnd.nextInt(3)];
-		int movY = 0;
-
-		if (movX == 0) {
-			movY = DIRECCIO[rnd.nextInt(2) + 1];
-		}
-
+		int pos = rnd.nextInt(4);
+		int angle = DIRECCIO[pos];
+		
 		GImage img;
 
 		if (sexe.equals("mascle")) {
 			img = new GImage("Magikarp.png");
-			img.scale(0.1);
 			add(img);
 		} else {
-			img = new GImage("6TJSm.png");
-			img.scale(0.1);
+			img = new GImage("S_Magikarp.png");
 			add(img);
 		}
 
-		Peix P = new Peix(img, sexe, movX, movY);
-
-		if (movX < 0) {
+		Peix P = new Peix(img, sexe, angle);
+		
+		if(pos > 1){
 			P.flipHorizontal();
 		}
-
+		
 		return P;
+	}
+
+	public Tortuga crearTortuga(String sexe) {
+
+		int pos = rnd.nextInt(4);
+		int angle = DIRECCIO[pos];
+		
+		GImage img;
+
+		if (sexe.equals("mascle")) {
+			img = new GImage("Tirtouga.png");
+			add(img);
+		} else {
+			img = new GImage("S_Tirtouga.png");
+			add(img);
+		}
+
+		Tortuga T = new Tortuga(img, sexe, angle);
+		
+		if(pos > 1){
+			T.flipHorizontal();
+		}
+		
+		return T;
+	}
+	
+	public Pop crearPop() {
+
+		GImage img;
+
+		img = new GImage("Octillery.png");
+		add(img);
+
+		Pop P = new Pop(img, "asexual", 90);
+		
+		return P;
+	}
+
+	public Animal crearDofi(String sexe) {
+		int pos = rnd.nextInt(4);
+		int angle = DIRECCIO[pos];
+		
+		GImage img;
+
+		if (sexe.equals("mascle")) {
+			img = new GImage("Lanturn.png");
+			add(img);
+		} else {
+			img = new GImage("S_Lanturn.png");
+			add(img);
+		}
+
+		Dofi D = new Dofi(img, sexe, angle);
+		
+		if(pos > 1){
+			D.flipHorizontal();
+		}
+		
+		return D;
 	}
 }

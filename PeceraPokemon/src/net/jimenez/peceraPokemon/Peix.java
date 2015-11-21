@@ -1,27 +1,26 @@
 package net.jimenez.peceraPokemon;
 
 import acm.graphics.GImage;
+import acm.graphics.GRectangle;
 
 public class Peix extends Animal {
 
 	/**
-	 * Constructor de l'objecte Tauro que hereta del 
-	 * objecte abstracte Peix.
+	 * Constructor de l'objecte Tauro que hereta del objecte abstracte Peix.
 	 * 
 	 * @param img
 	 * @param sex
-	 * @param x
-	 * @param y
+	 * @param m
 	 */
-	public Peix(GImage img, String sex, int x, int y) {
-		super(img, sex, x, y);
+	public Peix(GImage img, String sex, int a) {
+		super(img, sex, a);
 	}
 
 	/**
-	 * Metode que controlara si l'objecte Peix_Fantasma matara 
-	 * o es reproduira
+	 * Metode que controlara si l'objecte Peix_Fantasma matara o es reproduira
 	 * 
-	 * @param a Objecte peix que pasem per parametre
+	 * @param a
+	 *            Objecte peix que pasem per parametre
 	 * @return
 	 */
 	@Override
@@ -38,8 +37,17 @@ public class Peix extends Animal {
 	}
 
 	@Override
-	public void canviDireccio() {
-		movX = movX * -1;
-		movY = movY * -1;
+	public void canviDireccio(GRectangle peixera) {
+
+		GRectangle peix = getRectangle();
+
+		if (!peix.intersects(peixera)
+				&& (imatge.getX() < 0 || imatge.getY() < 0)) {
+			ang = ang - 180;
+		} else if (!peix.intersects(peixera)
+				&& (imatge.getX() > peixera.getWidth() || imatge.getY() > peixera
+						.getHeight())) {
+			ang = ang + 180;
+		}
 	}
 }

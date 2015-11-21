@@ -24,8 +24,10 @@ public class Peixera {
 	/**
 	 * Constructor de l'objecte Peixera
 	 * 
-	 * @param fish parametre que dona el valor List de "Peixos" a l'objecte Peix.
-	 * @param a parametre que fa referencia al App del programa.
+	 * @param fish
+	 *            parametre que dona el valor List de "Peixos" a l'objecte Peix.
+	 * @param a
+	 *            parametre que fa referencia al App del programa.
 	 */
 	public Peixera(List<Animal> anim, App a) {
 
@@ -40,7 +42,8 @@ public class Peixera {
 	 */
 	public boolean inici() {
 
-		peixera = new GRectangle(0, 0, pantalla.getWidth(), pantalla.getHeight());
+		peixera = new GRectangle(0, 0, pantalla.getWidth(),
+				pantalla.getHeight());
 
 		posicionament();
 
@@ -70,31 +73,56 @@ public class Peixera {
 
 				int posicio = rnd.nextInt(4);
 
+				if (Animals.get(i) instanceof Pop) {
+
+					Pop pop = (Pop) Animals.get(i);
+
+					if (posicio == 0 || posicio == 2) {
+
+						int[] dir = { 90, 270 };
+						pop.setAngle(dir[rnd.nextInt(2)]);
+
+					} else {
+						int[] dir = { 0, 180 };
+						int pos = rnd.nextInt(2);
+						pop.setAngle(dir[pos]);
+
+						if (pos == 1) {
+							pop.flipHorizontal();
+						}
+					}
+				}
+
 				if (posicio == 0) {
 
 					int altImg = Animals.get(i).heightImg();
 
-					Animals.get(i).setPosicio(0, rnd.nextInt(pantalla.getHeight() - altImg));
+					Animals.get(i).setPosicio(0,
+							rnd.nextInt(pantalla.getHeight() - altImg));
 
 				} else if (posicio == 1) {
 
 					int ampImg = Animals.get(i).widthImg();
 
-					Animals.get(i).setPosicio(rnd.nextInt(pantalla.getWidth() - ampImg), 0);
+					Animals.get(i).setPosicio(
+							rnd.nextInt(pantalla.getWidth() - ampImg), 0);
 
 				} else if (posicio == 2) {
 
 					int altImg = Animals.get(i).heightImg();
 					int ampImg = Animals.get(i).widthImg();
 
-					Animals.get(i).setPosicio(pantalla.getWidth() - ampImg, rnd.nextInt(pantalla.getHeight() - altImg));
+					Animals.get(i).setPosicio(pantalla.getWidth() - ampImg,
+							rnd.nextInt(pantalla.getHeight() - altImg));
 
 				} else {
 
 					int altImg = Animals.get(i).heightImg();
 					int ampImg = Animals.get(i).widthImg();
 
-					Animals.get(i).setPosicio(rnd.nextInt(pantalla.getWidth() - ampImg), pantalla.getHeight() - altImg);
+					Animals.get(i).setPosicio(
+							rnd.nextInt(pantalla.getWidth() - ampImg),
+							pantalla.getHeight() - altImg);
 
 				}
 				GRectangle peix1 = Animals.get(i).getRectangle();
@@ -122,18 +150,35 @@ public class Peixera {
 
 		for (int i = 0; i < Animals.size(); i++) {
 
-			GRectangle peix = Animals.get(i).getRectangle();
+			GRectangle animal = Animals.get(i).getRectangle();
 
-			if (peix.intersects(peixera) && Animals.get(i).getVida()) {
+			if (Animals.get(i) instanceof Pop) {
 
+				Animals.get(i).canviDireccio(peixera);
 				Animals.get(i).movimentAnimal();
 
 			} else {
 
-				Animals.get(i).canviDireccio();
-				Animals.get(i).flipHorizontal();
-				Animals.get(i).movimentAnimal();
+				if (animal.intersects(peixera) && Animals.get(i).getVida()) {
 
+					Animals.get(i).movimentAnimal();
+
+				} else {
+
+					/*if(Animals.get(i) instanceof Dofi){
+						
+						if(Animals.get(i).getPosX() > peixera.getWidth() || Animals.get(i).getPosX() < (0 - Animals.get(i).widthImg())){
+							Animals.get(i).canviDireccio(peixera);
+							Animals.get(i).flipHorizontal();
+							Animals.get(i).movimentAnimal();
+						} 
+						
+					} else {*/
+						Animals.get(i).canviDireccio(peixera);
+						Animals.get(i).flipHorizontal();
+						Animals.get(i).movimentAnimal();
+				  //}
+				}
 			}
 		}
 	}
@@ -196,7 +241,7 @@ public class Peixera {
 							Bebes.add(a);
 						}
 					}
-				} else {
+				} else if (animal1 instanceof Tauro) {
 
 					boolean matarAnimal = animal1.matoAnimal(animal2);
 
@@ -217,16 +262,136 @@ public class Peixera {
 							animal2.setPosicio(1000, 1000);
 
 						}
-						
+
 					} else {
-						
-						if (animal1.getRepro() && animal2.getRepro()) {
+
+						if (animal1.getRepro() && animal2.getRepro()
+								&& animal2 instanceof Tauro) {
 
 							animal1.setRepro(false);
 
 							String sex = GENERE[rnd.nextInt(2)];
 
 							Animal a = pantalla.crearTauro(sex);
+
+							if (animal1.equals(sex)) {
+
+								int X = animal1.getPosX();
+								int Y = animal1.getPosY();
+								a.setPosicio(X, Y);
+
+							} else {
+
+								int X = animal2.getPosX();
+								int Y = animal2.getPosY();
+								a.setPosicio(X, Y);
+
+							}
+							Bebes.add(a);
+						}
+					}
+				} else if (animal1 instanceof Tortuga) {
+
+					boolean matarAnimal = animal1.matoAnimal(animal2);
+
+					if (matarAnimal) {
+
+						if (animal2 instanceof Tortuga) {
+
+							animal1.setVida(false);
+							animal2.setVida(false);
+
+							animal1.setPosicio(1000, 1000);
+							animal2.setPosicio(1000, 1000);
+
+						} else {
+
+							animal2.setVida(false);
+
+							animal2.setPosicio(1000, 1000);
+						}
+
+					} else if (!matarAnimal && animal2 instanceof Tortuga) {
+
+						if (animal1.getRepro() && animal2.getRepro()) {
+
+							animal1.setRepro(false);
+
+							String sex = GENERE[rnd.nextInt(2)];
+
+							Animal a = pantalla.crearTortuga(sex);
+
+							if (animal1.equals(sex)) {
+
+								int X = animal1.getPosX();
+								int Y = animal1.getPosY();
+								a.setPosicio(X, Y);
+
+							} else {
+
+								int X = animal2.getPosX();
+								int Y = animal2.getPosY();
+								a.setPosicio(X, Y);
+
+							}
+							Bebes.add(a);
+						}
+					}
+
+				} else if (animal1 instanceof Pop) {
+
+					boolean matarAnimal = animal1.matoAnimal(animal2);
+
+					if (matarAnimal) {
+
+						if (animal2 instanceof Pop) {
+
+							animal1.setVida(false);
+							animal2.setVida(false);
+
+							animal1.setPosicio(1000, 1000);
+							animal2.setPosicio(1000, 1000);
+
+						} else {
+
+							animal2.setVida(false);
+
+							animal2.setPosicio(1000, 1000);
+
+						}
+					}
+				} else if (animal1 instanceof Dofi) {
+
+					boolean matarAnimal = animal1.matoAnimal(animal2);
+
+					if (matarAnimal) {
+
+						if (animal2 instanceof Dofi) {
+
+							animal1.setVida(false);
+							animal2.setVida(false);
+
+							animal1.setPosicio(1000, 1000);
+							animal2.setPosicio(1000, 1000);
+
+						} else {
+
+							animal2.setVida(false);
+							
+							animal2.setPosicio(1000, 1000);
+
+						}
+
+					} else {
+
+						if (animal1.getRepro() && animal2.getRepro()
+								&& animal2 instanceof Dofi) {
+
+							animal1.setRepro(false);
+
+							String sex = GENERE[rnd.nextInt(2)];
+
+							Animal a = pantalla.crearDofi(sex);
 
 							if (animal1.equals(sex)) {
 
