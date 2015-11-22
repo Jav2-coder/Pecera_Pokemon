@@ -12,17 +12,57 @@ public class Dofi extends Animal {
 
 	@Override
 	public boolean matoAnimal(Animal a) {
-		if (a instanceof Tauro || (a instanceof Dofi && this.sexeAnimals(a))) {
-
+		
+		if((a instanceof Dofi && this.sexeAnimals(a)) || a instanceof Tauro){
 			return true;
 		}
 		return false;
 	}
+	public void setAngle(int a) {
+		ang = a;
+	}
 
 	@Override
 	public void canviDireccio(GRectangle peixera) {
-		// TODO Auto-generated method stub
 		
+		int angle = this.ang;
+		
+		if(getPosY() < 0) {
+			
+			if(angle < 90){
+				setAngle(360 - angle);
+			} else {
+				setAngle(270 - angle);
+			}
+			
+		} else if(getPosY() > peixera.getHeight()) {
+			
+			if(angle < 270){
+				setAngle(270 - angle);
+			} else {
+				setAngle(360 - angle);
+			}
+			
+		} else if(getPosX() < 0) {
+			
+			if(angle < 90){
+				setAngle(180 - angle);
+			} else {
+				setAngle();
+			}
+			
+			flipHorizontal();
+			
+		} else if (getPosX() > peixera.getWidth()) {
+			
+			if(angle < 180){
+				setAngle();
+			} else {
+				setAngle();
+			}
+			
+			flipHorizontal();
+			
+		}
 	}
-
 }

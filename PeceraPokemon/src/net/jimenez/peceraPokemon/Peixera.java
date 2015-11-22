@@ -164,20 +164,10 @@ public class Peixera {
 					Animals.get(i).movimentAnimal();
 
 				} else {
-
-					/*if(Animals.get(i) instanceof Dofi){
-						
-						if(Animals.get(i).getPosX() > peixera.getWidth() || Animals.get(i).getPosX() < (0 - Animals.get(i).widthImg())){
-							Animals.get(i).canviDireccio(peixera);
-							Animals.get(i).flipHorizontal();
-							Animals.get(i).movimentAnimal();
-						} 
-						
-					} else {*/
+					
 						Animals.get(i).canviDireccio(peixera);
-						Animals.get(i).flipHorizontal();
 						Animals.get(i).movimentAnimal();
-				  //}
+						
 				}
 			}
 		}

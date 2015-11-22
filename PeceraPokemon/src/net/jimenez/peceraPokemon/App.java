@@ -15,11 +15,12 @@ import acm.program.GraphicsProgram;
 public class App extends GraphicsProgram {
 
 	private static final long serialVersionUID = 4266158358432665610L;
-	private static final int TOTAL_PEIXOS = 34;
-	private static final int TOTAL_TORTUGUES = 6;
-	private static final int TOTAL_TAURONS = 4;
-	private static final int PEIXERA_AMP = 1435;
-	private static final int PEIXERA_ALT = 800;
+	private static final int TOTAL_PEIXOS = 64;
+	private static final int TOTAL_TORTUGUES = 8;
+	private static final int TOTAL_TAURONS = 6;
+	private static final int TOTAL_POPS = 12;
+	private static final int PEIXERA_AMP = 1900;
+	private static final int PEIXERA_ALT = 940;
 	private static final int[] DIRECCIO = { 0, 90, 180, 270 };
 	List<Animal> Animals = new ArrayList<Animal>();
 	Random rnd = new Random();
@@ -39,11 +40,25 @@ public class App extends GraphicsProgram {
 	 * Metode principal del programa, on creem tots els objectes.
 	 */
 	public void run() {
-		for (int i = 0; i < 2; i++){
+		
+		totalAnimals();
+
+		Peixera peixera = new Peixera(Animals, this);
+		boolean noAnimals = peixera.inici();
+
+		if (noAnimals) {
+			GImage fi = new GImage("fi.png");
+			fi.setLocation(0, (getHeight() / 2) - (fi.getHeight() / 2));
+			add(fi);
+		}
+	}
+
+	private void totalAnimals() {
+		
+		for (int i = 0; i < TOTAL_POPS; i++) {
 			Animals.add(crearPop());
 		}
-		
-		/*for (int i = 0; i < TOTAL_PEIXOS; i++) {
+		for (int i = 0; i < TOTAL_PEIXOS; i++) {
 
 			if (i < (TOTAL_PEIXOS / 2)) {
 				Animals.add(crearPeix("mascle"));
@@ -52,7 +67,6 @@ public class App extends GraphicsProgram {
 				Animals.add(crearPeix("femella"));
 			}
 		}
-
 		for (int i = 0; i < TOTAL_TAURONS; i++) {
 
 			if (i < (TOTAL_TAURONS / 2)) {
@@ -62,7 +76,6 @@ public class App extends GraphicsProgram {
 				Animals.add(crearTauro("femella"));
 			}
 		}
-		
 		for (int i = 0; i < TOTAL_TORTUGUES; i++) {
 
 			if (i < (TOTAL_TORTUGUES / 2)) {
@@ -71,15 +84,6 @@ public class App extends GraphicsProgram {
 			} else {
 				Animals.add(crearTortuga("femella"));
 			}
-		}*/
-
-		Peixera peixera = new Peixera(Animals, this);
-		boolean noAnimals = peixera.inici();
-
-		if (noAnimals) {
-			GImage fi = new GImage("fi.png");
-			fi.setLocation(0, (getHeight() / 2) - (fi.getHeight() / 2));
-			add(fi);
 		}
 	}
 

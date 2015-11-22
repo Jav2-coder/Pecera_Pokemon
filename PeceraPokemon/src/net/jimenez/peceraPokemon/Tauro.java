@@ -28,7 +28,7 @@ public class Tauro extends Animal {
 	@Override
 	public boolean matoAnimal(Animal a) {
 
-		if (a instanceof Peix || a instanceof Pop || (a instanceof Tauro && this.sexeAnimals(a))) {
+		if (a instanceof Peix || (a instanceof Tauro && this.sexeAnimals(a))) {
 			return true;
 		}
 		return false;
@@ -47,5 +47,6 @@ public class Tauro extends Animal {
 						.getHeight())) {
 			ang = ang + 180;
 		}
+		flipHorizontal();
 	}
 }

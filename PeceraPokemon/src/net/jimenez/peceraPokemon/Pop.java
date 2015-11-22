@@ -13,7 +13,7 @@ public class Pop extends Animal {
 
 	@Override
 	public boolean matoAnimal(Animal a) {
-		if (a instanceof Peix || a instanceof Pop) {
+		if (a instanceof Peix || a instanceof Pop || a instanceof Estrella) {
 			return true;
 		}
 		return false;

@@ -30,5 +30,6 @@ public class Tortuga extends Animal {
 						.getHeight())) {
 			ang = ang + 180;
 		}
+		flipHorizontal();
 	}
 }

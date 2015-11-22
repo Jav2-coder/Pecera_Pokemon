@@ -26,12 +26,8 @@ public class Peix extends Animal {
 	@Override
 	public boolean matoAnimal(Animal a) {
 
-		if (a instanceof Peix) {
-
-			if (this.sexeAnimals(a)) {
-				return true;
-			}
-			return false;
+		if ((a instanceof Peix && this.sexeAnimals(a)) || a instanceof Estrella) {
+			return true;
 		}
 		return false;
 	}
@@ -49,5 +45,6 @@ public class Peix extends Animal {
 						.getHeight())) {
 			ang = ang + 180;
 		}
+		flipHorizontal();
 	}
 }
