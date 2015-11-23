@@ -15,8 +15,41 @@ public class Estrella extends Animal {
 		return false;
 	}
 
+	public void setAngle(int a) {
+		ang = a;
+	}
+
 	@Override
 	public void canviDireccio(GRectangle peixera) {
-		flipHorizontal();
+		int angle = this.ang;
+
+		if (getPosY() < 0) {
+			if (angle < 90) {
+				setAngle(360 - angle);
+			} else {
+				angle = angle + 90;
+				setAngle(angle);
+			}
+		} else if (getPosY() > peixera.getHeight()) {
+			if (angle > 270) {
+				setAngle(360 - angle);
+			} else {
+				setAngle(angle - 90);
+			}
+		} else if (getPosX() < 0) {
+			if (angle > 180) {
+				setAngle(angle + 90);
+			} else {
+				setAngle(angle - 90);
+			}
+			flipHorizontal();
+		} else if (getPosX() > peixera.getWidth()) {
+			if (angle > 90) {
+				setAngle(angle - 90);
+			} else {
+				setAngle(angle + 90);
+			}
+			flipHorizontal();
+		}
 	}
 }

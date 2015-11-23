@@ -15,13 +15,16 @@ import acm.program.GraphicsProgram;
 public class App extends GraphicsProgram {
 
 	private static final long serialVersionUID = 4266158358432665610L;
-	private static final int TOTAL_PEIXOS = 64;
-	private static final int TOTAL_TORTUGUES = 8;
-	private static final int TOTAL_TAURONS = 6;
-	private static final int TOTAL_POPS = 12;
+	private static final int TOTAL_PEIXOS = 60;
+	private static final int TOTAL_TORTUGUES = 6;
+	private static final int TOTAL_TAURONS = 4;
+	private static final int TOTAL_POPS = 6;
+	private static final int TOTAL_DOFINS = 10;
+	private static final int TOTAL_ESTRELLES = 14;
 	private static final int PEIXERA_AMP = 1900;
 	private static final int PEIXERA_ALT = 940;
-	private static final int[] DIRECCIO = { 0, 90, 180, 270 };
+	private static final int[] DIRECCIO = {0, 90, 180, 270};
+	private static final int[] DIAGONAL = {45, 135, 225, 315};
 	List<Animal> Animals = new ArrayList<Animal>();
 	Random rnd = new Random();
 
@@ -31,7 +34,8 @@ public class App extends GraphicsProgram {
 	public void init() {
 
 		setSize(PEIXERA_AMP, PEIXERA_ALT);
-		GImage fons = new GImage("fondo.png");
+		GImage fons = new GImage("fondo.jpg");
+		fons.setSize(PEIXERA_AMP, PEIXERA_ALT);
 		add(fons);
 
 	}
@@ -48,13 +52,25 @@ public class App extends GraphicsProgram {
 
 		if (noAnimals) {
 			GImage fi = new GImage("fi.png");
-			fi.setLocation(0, (getHeight() / 2) - (fi.getHeight() / 2));
+			fi.setLocation(((getWidth()/2)-(fi.getWidth()/2)), ((getHeight()/2)-(fi.getHeight()/2)));
 			add(fi);
 		}
 	}
 
 	private void totalAnimals() {
 		
+		for (int i = 0; i < TOTAL_ESTRELLES; i++) {
+			Animals.add(crearEstrella("asexual"));
+		}
+		for (int i = 0; i < TOTAL_DOFINS; i++) {
+
+			if (i < (TOTAL_DOFINS / 2)) {
+				Animals.add(crearDofi("mascle"));
+
+			} else {
+				Animals.add(crearDofi("femella"));
+			}
+		}
 		for (int i = 0; i < TOTAL_POPS; i++) {
 			Animals.add(crearPop());
 		}
@@ -189,7 +205,7 @@ public class App extends GraphicsProgram {
 
 	public Animal crearDofi(String sexe) {
 		int pos = rnd.nextInt(4);
-		int angle = DIRECCIO[pos];
+		int angle = DIAGONAL[pos];
 		
 		GImage img;
 
@@ -203,10 +219,28 @@ public class App extends GraphicsProgram {
 
 		Dofi D = new Dofi(img, sexe, angle);
 		
-		if(pos > 1){
+		if(pos == 1 || pos == 2){
 			D.flipHorizontal();
 		}
 		
 		return D;
+	}
+	public Animal crearEstrella(String sexe) {
+		int pos = rnd.nextInt(4);
+		int angle = DIAGONAL[pos];
+		
+		GImage img;
+
+		img = new GImage("Staryu.png");
+		add(img);
+		
+
+		Estrella E = new Estrella(img, sexe, angle);
+		
+		if(pos == 1 || pos == 2){
+			E.flipHorizontal();
+		}
+		
+		return E;
 	}
 }

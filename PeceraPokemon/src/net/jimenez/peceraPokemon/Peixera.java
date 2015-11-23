@@ -87,9 +87,6 @@ public class Peixera {
 						int pos = rnd.nextInt(2);
 						pop.setAngle(dir[pos]);
 
-						if (pos == 1) {
-							pop.flipHorizontal();
-						}
 					}
 				}
 
@@ -399,7 +396,7 @@ public class Peixera {
 							Bebes.add(a);
 						}
 					}
-				}
+				} 
 			}
 		}
 		netejarPeixera();
