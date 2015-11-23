@@ -161,10 +161,10 @@ public class Peixera {
 					Animals.get(i).movimentAnimal();
 
 				} else {
-					
-						Animals.get(i).canviDireccio(peixera);
-						Animals.get(i).movimentAnimal();
-						
+
+					Animals.get(i).canviDireccio(peixera);
+					Animals.get(i).movimentAnimal();
+
 				}
 			}
 		}
@@ -196,12 +196,16 @@ public class Peixera {
 
 					if (matarAnimal) {
 
-						animal1.setVida(false);
-						animal2.setVida(false);
+						if (animal2 instanceof Peix) {
+							animal1.setVida(false);
+							animal2.setVida(false);
 
-						animal1.setPosicio(1000, 1000);
-						animal2.setPosicio(1000, 1000);
-
+							animal1.setPosicio(1000, 1000);
+							animal2.setPosicio(1000, 1000);
+						} else {
+							animal2.setVida(false);
+							animal2.setPosicio(1000, 1000);
+						}
 					} else if (!matarAnimal && animal2 instanceof Peix) {
 
 						if (animal1.getRepro() && animal2.getRepro()) {
@@ -364,7 +368,7 @@ public class Peixera {
 						} else {
 
 							animal2.setVida(false);
-							
+
 							animal2.setPosicio(1000, 1000);
 
 						}
@@ -396,7 +400,7 @@ public class Peixera {
 							Bebes.add(a);
 						}
 					}
-				} 
+				}
 			}
 		}
 		netejarPeixera();
