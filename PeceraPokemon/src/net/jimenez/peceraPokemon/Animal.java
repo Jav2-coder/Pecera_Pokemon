@@ -175,6 +175,10 @@ public abstract class Animal {
 		imatge.setLocation(X, Y);
 	}
 
+	public GImage getImatge(){
+		return imatge;
+	}
+	
 	/**
 	 * Mètode per girar la imatge quan aquesta surt de la pantalla.
 	 */

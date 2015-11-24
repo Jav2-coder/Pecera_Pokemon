@@ -18,6 +18,7 @@ public class Peixera {
 	List<Animal> Animals;
 	List<Animal> Bebes = new ArrayList<Animal>();
 	App pantalla;
+	AnimalBuilder crearAnimal;
 	Random rnd;
 	GRectangle peixera;
 
@@ -29,10 +30,11 @@ public class Peixera {
 	 * @param a
 	 *            parametre que fa referencia al App del programa.
 	 */
-	public Peixera(List<Animal> anim, App a) {
+	public Peixera(List<Animal> anim, App a, AnimalBuilder AB) {
 
 		Animals = anim;
 		pantalla = a;
+		crearAnimal = AB;
 	}
 
 	/**
@@ -214,7 +216,8 @@ public class Peixera {
 
 							String sex = GENERE[rnd.nextInt(2)];
 
-							Animal a = pantalla.crearPeix(sex);
+							Animal a = crearAnimal.crearPeix(sex);
+							pantalla.add(a.getImatge());
 
 							if (animal1.equals(sex)) {
 
@@ -263,7 +266,8 @@ public class Peixera {
 
 							String sex = GENERE[rnd.nextInt(2)];
 
-							Animal a = pantalla.crearTauro(sex);
+							Animal a = crearAnimal.crearTauro(sex);
+							pantalla.add(a.getImatge());
 
 							if (animal1.equals(sex)) {
 
@@ -310,7 +314,8 @@ public class Peixera {
 
 							String sex = GENERE[rnd.nextInt(2)];
 
-							Animal a = pantalla.crearTortuga(sex);
+							Animal a = crearAnimal.crearTortuga(sex);
+							pantalla.add(a.getImatge());
 
 							if (animal1.equals(sex)) {
 
@@ -382,7 +387,8 @@ public class Peixera {
 
 							String sex = GENERE[rnd.nextInt(2)];
 
-							Animal a = pantalla.crearDofi(sex);
+							Animal a = crearAnimal.crearDofi(sex);
+							pantalla.add(a.getImatge());
 
 							if (animal1.equals(sex)) {
 
