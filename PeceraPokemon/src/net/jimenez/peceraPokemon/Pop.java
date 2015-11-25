@@ -7,10 +7,23 @@ import acm.graphics.GRectangle;
 
 public class Pop extends Animal {
 
+	/**
+	 * Constructor de l'objecte Pop que hereta del objecte abstracte Animal.
+	 * 
+	 * @param img GImage que conte el valor de la imatge de l'objecte
+	 * @param sex String que conte el valor del sexe de l'objecte
+	 * @param a Integer que conte el valor del angle de l'objecte
+	 */
 	public Pop(GImage img, String sex, int a) {
 		super(img, sex, a);
 	}
 
+	/**
+	 * Metode que controlara si l'objecte Pop matara o no
+	 * 
+	 * @param a Objecte animal que pasem per parametre
+	 * @return retorna un valor boolean
+	 */
 	@Override
 	public boolean matoAnimal(Animal a) {
 		if (a instanceof Peix || a instanceof Pop || a instanceof Estrella) {
@@ -19,10 +32,20 @@ public class Pop extends Animal {
 		return false;
 	}
 
+	/**
+	 * Metode que permet afegir un nou angle a l'objecte Pop
+	 * 
+	 * @param a Integer que conte el nou valor de l'angle 
+	 */
 	public void setAngle(int a) {
 		ang = a;
 	}
 
+	/**
+	 * Metode encarregat de direccionar l'objecte Pop
+	 * 
+	 * @param peixera GRectangle que conte els valors del canvas 
+	 */
 	public void canviDireccio(GRectangle peixera) {
 		
 		Random rnd = new Random();

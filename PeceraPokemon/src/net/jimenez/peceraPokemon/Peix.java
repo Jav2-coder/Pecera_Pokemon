@@ -6,22 +6,21 @@ import acm.graphics.GRectangle;
 public class Peix extends Animal {
 
 	/**
-	 * Constructor de l'objecte Tauro que hereta del objecte abstracte Peix.
+	 * Constructor de l'objecte Peix que hereta del objecte abstracte Animal.
 	 * 
-	 * @param img
-	 * @param sex
-	 * @param m
+	 * @param img GImage que conte el valor de la imatge de l'objecte
+	 * @param sex String que conte el valor del sexe de l'objecte
+	 * @param a Integer que conte el valor del angle de l'objecte
 	 */
 	public Peix(GImage img, String sex, int a) {
 		super(img, sex, a);
 	}
 
 	/**
-	 * Metode que controlara si l'objecte Peix_Fantasma matara o es reproduira
+	 * Metode que controlara si l'objecte Peix matara o no
 	 * 
-	 * @param a
-	 *            Objecte peix que pasem per parametre
-	 * @return
+	 * @param a Objecte animal que pasem per parametre
+	 * @return retorna un valor boolean
 	 */
 	@Override
 	public boolean matoAnimal(Animal a) {
@@ -32,6 +31,11 @@ public class Peix extends Animal {
 		return false;
 	}
 
+	/**
+	 * Metode encarregat de direccionar l'objecte Peix
+	 * 
+	 * @param peixera GRectangle que conte els valors del canvas 
+	 */
 	@Override
 	public void canviDireccio(GRectangle peixera) {
 

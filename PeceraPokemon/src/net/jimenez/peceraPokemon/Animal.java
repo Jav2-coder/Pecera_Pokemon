@@ -175,6 +175,11 @@ public abstract class Animal {
 		imatge.setLocation(X, Y);
 	}
 
+	/**
+	 * Metode per obtenir el GImage de l'objecte Animal.
+	 * 
+	 * @return
+	 */
 	public GImage getImatge(){
 		return imatge;
 	}

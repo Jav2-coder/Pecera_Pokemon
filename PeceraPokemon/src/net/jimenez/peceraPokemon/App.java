@@ -35,7 +35,7 @@ public class App extends GraphicsProgram {
 	}
 
 	/**
-	 * Metode principal del programa, on creem tots els objectes.
+	 * Metode principal del programa, on creem tots els objectes necessaris.
 	 */
 	public void run() {
 		
@@ -52,6 +52,9 @@ public class App extends GraphicsProgram {
 		}
 	}
 
+	/**
+	 * Metode principal on creem tots els objectes de tipus Animal.
+	 */
 	private void totalAnimals() {
 		
 		for(int i = 0; i < TOTAL_ANIMALS; i++){
