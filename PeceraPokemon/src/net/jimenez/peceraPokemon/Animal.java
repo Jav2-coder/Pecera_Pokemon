@@ -10,12 +10,12 @@ import acm.graphics.GRectangle;
  */
 public abstract class Animal {
 
-	String sexe;
-	int mov = 1;
-	int ang;
-	GImage imatge;
-	boolean vida = true;
-	boolean reproduccio = true;
+	private String sexe;
+	private int mov = 1;
+	protected int ang;
+	protected GImage imatge;
+	private boolean vida = true;
+	private boolean reproduccio = true;
 
 	/**
 	 * Constructor de l'objecte Peix

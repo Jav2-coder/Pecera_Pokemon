@@ -38,8 +38,10 @@ public class AnimalBuilder {
 			break;
 		case "Tortuga":
 			A = crearTortuga(SEXE[pos]);
+			break;
 		case "Estrella":
 			A = crearEstrella();
+			break;
 		case "Pop":
 			A = crearPop();
 			break;
